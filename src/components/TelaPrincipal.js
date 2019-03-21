@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { AppRegistry, SectionList, StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, SectionList, StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
 import { SearchBar, Header, ListItem } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 export default class TelaPrincipal extends Component {
    state = {
     search: '',
@@ -22,37 +23,51 @@ export default class TelaPrincipal extends Component {
               name: 'Chris Jackson',
               avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
               subtitle: 'Vice Chairman'
+            },
+            {
+              name: 'José',
+              avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+              subtitle: 'Vice Chairman'
+            },
+            {
+              name: 'João',
+              avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+              subtitle: 'Vice Chairman'
             }
         ];
     const { search } = this.state;
     return (
-        
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView >
 
          <Header
             leftComponent={{ icon: 'menu', color: '#fff' }}
             centerComponent={{ text: 'Protocolo digital Sepse', style: { color: '#fff' } }}
             rightComponent={{ icon: 'search', color: '#fff' }}
+            containerStyle={{backgroundColor:'rgb(0, 204, 0)'}}
+            
         	/>
             <View>
-	      <Text style={styles.sectionHeader}>Pacientes em Trtesatamento</Text>
+	      <Text style={styles.sectionHeader}>Pacientes em Tratamento</Text>
 	      {
 		list.map((l, i) => (
 		  <ListItem
 		    key={i}
 		    title={l.name}
+        onPress={()=>Actions.pergunta()}
 		    chevron
 		  />
 		))
 	      }
 	    </View>
             <View>
-	      <Text style={styles.sectionHeader}>Pacientes em Avaliação</Text>
+	      <Text style={styles.sectionHeader} onPress={()=>Alert("I want this")}>Pacientes em Avaliação</Text>
 	      {
 		list.map((l, i) => (
 		  <ListItem
 		    key={i}
 		    title={l.name}
+        onPress={()=>Actions.pergunta()}
 		    chevron
 		  />
 		))
@@ -65,13 +80,15 @@ export default class TelaPrincipal extends Component {
 		  <ListItem
 		    key={i}
 		    title={l.name}
+        onPress={()=>Actions.pergunta()}
 		    chevron
 		  />
 		))
 	      }
 	    </View>
 
-      </View>
+      </ScrollView>
+    </View>
     );
   }
 }
